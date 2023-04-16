@@ -1,9 +1,15 @@
 package application;
 
-public class Program {
+import boardgame.Board;
 
-	public static void main(String[] args) {
-		System.out.println("Hello World");
+public class Program
+{
+
+	public static void main(String[] args)
+	{
+		
+		Board board = new Board(8, 8);
+		
 	}
 
 }
