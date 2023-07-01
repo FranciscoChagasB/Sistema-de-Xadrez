@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author Francisco
- *
- */
-module SistemaJogodeXadrez {
-}

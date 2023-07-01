@@ -19,6 +19,13 @@ public abstract class ChessPiece extends Piece
 	public Color getColor() {
 		return color;
 	}
+	
+	//Getter do atributo position convertido.
+	public ChessPosition getChessPosition()
+	{
+		return ChessPosition.fromPosition(position);
+		
+	}
 
 	//Verifica se um target informado é uma peça adversária ou uma peça sua.
 	protected Boolean isThereOpponentPiece(Position position)
