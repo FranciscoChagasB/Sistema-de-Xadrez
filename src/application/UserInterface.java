@@ -3,6 +3,7 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -55,26 +56,53 @@ public class UserInterface
 			throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8");
 		}
 	}
+	
+	//Método para imprimir o tabuleiro com o turno e jogador atual.
+	public static void printMatch(ChessMatch chessMatch)
+	{
+		printBoard(chessMatch.getPieces());
+		System.out.println();
+		System.out.println("Turn: " + chessMatch.getTurn());
+		System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+	}
 
-	// Método para imprimir meu tabuleiro
+	//Método para imprimir meu tabuleiro.
 	public static void printBoard(ChessPiece[][] pieces)
 	{
 		for (int i = 0; i < pieces.length; i++) {
 			System.out.print((8 - i) + " ");
 			for (int j = 0; j < pieces.length; j++) {
-				printPiece(pieces[i][j]);
+				printPiece(pieces[i][j], false);
 			}
 			System.out.println();
 		}
 		System.out.println("  a b c d e f g h");
 	}
 
-	// Método auxiliar para imprimir uma peça.
-	private static void printPiece(ChessPiece piece)
+	//Método para imprimir meu tabuleiro com movimentos da peça selecionada.
+		public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves)
+		{
+			for (int i = 0; i < pieces.length; i++) {
+				System.out.print((8 - i) + " ");
+				for (int j = 0; j < pieces.length; j++) {
+					printPiece(pieces[i][j], possibleMoves[i][j]);
+				}
+				System.out.println();
+			}
+			System.out.println("  a b c d e f g h");
+		}
+	
+	//Método auxiliar para imprimir uma peça.
+	private static void printPiece(ChessPiece piece, boolean background)
 	{
+		if (background)
+		{
+			System.out.print(ANSI_BLUE_BACKGROUND);
+		}
+		
     	if (piece == null)
     	{
-            System.out.print("-");
+            System.out.print("-" + ANSI_RESET);
         }
         else
         {

@@ -24,10 +24,14 @@ public class Program
 				UserInterface.clearScreen();
 				
 				//Recebe a matriz de peças da partida.
-				UserInterface.printBoard(chessMatch.getPieces());
+				UserInterface.printMatch(chessMatch);
 				System.out.println();
 				System.out.print("Source: ");
 				ChessPosition source = UserInterface.readChessPosition(sc);
+				
+				boolean[][] possibleMoves = chessMatch.possibleMoves(source);
+				UserInterface.clearScreen();
+				UserInterface.printBoard(chessMatch.getPieces(), possibleMoves);
 				
 				System.out.println();
 				System.out.print("Target: ");
