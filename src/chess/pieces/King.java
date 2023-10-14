@@ -27,6 +27,7 @@ public class King extends ChessPiece
 		return p == null || p.getColor() != getColor();
 	}
 	
+	//Verifica os movimentos possíveis para a peça Rei.
 	@Override
 	public boolean[][] possibleMoves() {
 		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];

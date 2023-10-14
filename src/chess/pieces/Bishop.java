@@ -6,10 +6,10 @@ import chess.ChessPiece;
 import chess.Color;
 
 //Classe refente a peça da Torre no tabuleiro
-public class Rook extends ChessPiece
+public class Bishop extends ChessPiece
 {
 
-	public Rook(Board board, Color color)
+	public Bishop(Board board, Color color)
 	{
 		super(board, color);
 	}
@@ -17,58 +17,58 @@ public class Rook extends ChessPiece
 	@Override
 	public String toString()
 	{
-		return "R";
+		return "B";
 	}
 	
-	//Verifica os movimentos possíveis para a peça Torre.
+	//Verifica os movimentos possíveis para a peça Bispo.
 	@Override
 	public boolean[][] possibleMoves() {
 		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
 		
 		Position p = new Position(0, 0);
 		
-		//Posições acima da torre.
-		p.setValues((position.getRow() - 1), position.getColumn());
+		//Posições ao noroeste da torre.
+		p.setValues((position.getRow() - 1), position.getColumn() -1);
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p))
 		{
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setRow(p.getRow() - 1);
+			p.setValues(p.getRow() - 1, p.getColumn() - 1);
 		}
 		if (getBoard().positionExists(p) && isThereOpponentPiece(p))
 		{
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		
-		//Posições à esquerda da torre.
-		p.setValues((position.getRow()), position.getColumn() - 1);
+		//Posições ao nordeste da torre.
+		p.setValues((position.getRow() - 1), position.getColumn() + 1);
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p))
 		{
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setColumn(p.getColumn() - 1);
+			p.setValues(p.getRow() - 1, p.getColumn() + 1);
 		}
 		if (getBoard().positionExists(p) && isThereOpponentPiece(p))
 		{
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		
-		//Posições à direita da torre.
-		p.setValues((position.getRow()), position.getColumn() + 1);
+		//Posições ao sudeste da torre.
+		p.setValues((position.getRow() + 1), position.getColumn() + 1);
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p))
 		{
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setColumn(p.getColumn() + 1);
+			p.setValues(p.getRow() + 1, p.getColumn() + 1);
 		}
 		if (getBoard().positionExists(p) && isThereOpponentPiece(p))
 		{
 			mat[p.getRow()][p.getColumn()] = true;
 		}
 		
-		//Posições abaixo da torre.
-		p.setValues((position.getRow() + 1), position.getColumn());
+		//Posições ao sudoeste da torre.
+		p.setValues((position.getRow() + 1), position.getColumn() - 1);
 		while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p))
 		{
 			mat[p.getRow()][p.getColumn()] = true;
-			p.setRow(p.getRow() + 1);
+			p.setValues(p.getRow() + 1, p.getColumn() - 1);
 		}
 		if (getBoard().positionExists(p) && isThereOpponentPiece(p))
 		{
